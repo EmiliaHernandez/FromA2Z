@@ -7,6 +7,14 @@ public class Mainmenu : MonoBehaviour {
 
     public void Playgame ()
     {
+        StartCoroutine(Loadscene());
+    }
+
+    public Animator transitionAnim;
+    IEnumerator Loadscene()
+    {
+        transitionAnim.SetTrigger("end");
+        yield return new WaitForSeconds(1.5f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
