@@ -8,9 +8,18 @@ public class Scenechange : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
-            SceneManager.LoadScene(newLevel);
+            StartCoroutine(Loadscene());
         }
+    }
+
+    public Animator transitionAnim;
+
+    IEnumerator Loadscene()
+    {
+        transitionAnim.SetTrigger("end");
+        yield return new WaitForSeconds(1.5f);
+        SceneManager.LoadScene(newLevel);
     }
 }
